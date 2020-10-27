@@ -33,10 +33,10 @@ app.get('/about', (req, res) => {
     })
 })
 
-app.get('/help', (req, res) => {
-    res.render('help', {
-        helpMessage: "Here you will find help",
-        title: "Help",
+app.get('/contact', (req, res) => {
+    res.render('contact', {
+        contactMessage: "You are welcome to email me at helizakay2@gmail.com :) .",
+        title: "Contact",
         name: "Heli Zakay"
     })
 })
@@ -49,7 +49,7 @@ app.get("/weather", (req, res) => {
         })
     }
     
-    forecast(city, (error, data) => {
+    forecast(city, (error, data, icon) => {
         if(error) {
             return res.send({
                 error
@@ -57,18 +57,19 @@ app.get("/weather", (req, res) => {
         } 
         res.send({
             data,
-            city
+            city,
+            icon
         })
     })
 })
 
-app.get("/help/*", (req, res) => {
-    res.render('pagenotfound', {
-        errorText: "Help article not found",
-        title: "404",
-        name: "Heli Zakay"
-    })
-})
+// app.get("/help/*", (req, res) => {
+//     res.render('pagenotfound', {
+//         errorText: "Help article not found",
+//         title: "404",
+//         name: "Heli Zakay"
+//     })
+// })
 
 app.get("*", (req, res) => {
     res.render('pagenotfound', {
